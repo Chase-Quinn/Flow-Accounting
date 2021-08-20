@@ -1,0 +1,300 @@
+﻿{% extends "website_template.html" %}
+
+{% block content %}
+
+<section class="hero-wrap hero-wrap-2"
+	style="background-image: url({{url_for('static', filename='website_static/images/bg_2.png')}});"
+	data-stellar-background-ratio="0.5">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row no-gutters slider-text align-items-end">
+			<div class="col-md-9 ftco-animate pb-5">
+				<p class="breadcrumbs mb-2"><span class="mr-2"><a href="{{url_for('index')}}">Welcome to Flow<i
+								class="ion-ios-arrow-forward"></i></a></span> <span><i
+							class="ion-ios-arrow-forward"></i></span></p>
+				<h1 class="mb-0 bread">About Us</h1>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="ftco-section ftco-no-pt bg-light">
+	<div class="container">
+		<div class="row d-flex no-gutters">
+			<div class="col-md-6 d-flex">
+				<div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0"
+					id="heropicture"
+					style="background-image:url({{url_for('static', filename='website_static/images/about_2.png')}});">
+				</div>
+			</div>
+			<div class="col-md-6 pl-md-5 py-md-5">
+				<div class="heading-section pl-md-4 pt-md-5 text-center">
+					<span class="subheading">What is Flow?</span>
+					<h2 class="mb-4">Flow is Accounting Simplified </h2>
+					<p>When our team began creating Flow we had two main goals: Include as many features as possible,
+						and
+						keep it simple! Finances can be overwhelming for a lot of people, but Flow is designed to
+						eliminate the complexity of accounting and bookkeeping.</p>
+					<p>The Flow app is very easy to learn and anyone can feel like an accounting expert after just a
+						couple uses!</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	@media only screen and (max-width: 768px) {
+		#heropicture {
+			display: none !important;
+		}
+
+	}
+</style>
+
+<!--------Customer Feedback------->
+
+<section class="ftco-section testimony-section bg-light">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row justify-content-center pb-5 mb-3">
+			<div class="col-md-7 heading-section heading-section-white text-center ftco-animate">
+				<span class="subheading">Testimonies</span>
+				<h2>Happy Clients &amp; Feedbacks</h2>
+			</div>
+		</div>
+		<div class="row ftco-animate">
+			<div class="col-md-12">
+				<div class="carousel-testimony owl-carousel ftco-owl">
+					<div class="item">
+						<div class="testimony-wrap py-4">
+							<div class="icon d-flex align-items-center justify-content-center"><span
+									class="fa fa-quote-left"></span></div>
+							<div class="text">
+								<p class="mb-4">Flow was very easy for me to learn and has all the features my business
+									needs.</p>
+								<div class="d-flex align-items-center">
+									<div class="pl-3">
+										<p class="name">Gene Wilson</p>
+										<span class="position">Small business owner</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="testimony-wrap py-4">
+							<div class="icon d-flex align-items-center justify-content-center"><span
+									class="fa fa-quote-left"></span></div>
+							<div class="text">
+								<p class="mb-4">This app is awesome! it gives me the ability to view revenue and expense
+									graphs. I can see where all my money is going.</p>
+								<div class="d-flex align-items-center">
+									<div class="pl-3">
+										<p class="name">Kristin Driggers</p>
+										<span class="position">Program Director</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="testimony-wrap py-4">
+							<div class="icon d-flex align-items-center justify-content-center"><span
+									class="fa fa-quote-left"></span></div>
+							<div class="text">
+								<p class="mb-4">The profit/loss form helps me track my businesses profitability with
+									ease. I love this app!</p>
+								<div class="d-flex align-items-center">
+									<div class="pl-3">
+										<p class="name">Brandi Moore</p>
+										<span class="position">Online Reseller</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="testimony-wrap py-4">
+							<div class="icon d-flex align-items-center justify-content-center"><span
+									class="fa fa-quote-left"></span></div>
+							<div class="text">
+								<p class="mb-4">The app has great visuals to help you see the trends in your business.
+									Very satisfied with the product.</p>
+								<div class="d-flex align-items-center">
+									<div class="pl-3">
+										<p class="name">Michael Shale</p>
+										<span class="position">Small business owner</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="item">
+						<div class="testimony-wrap py-4">
+							<div class="icon d-flex align-items-center justify-content-center"><span
+									class="fa fa-quote-left"></span></div>
+							<div class="text">
+								<p class="mb-4">Good app. Using the payables and receivables pages its easy to see who
+									hasn't paid me for the month.</p>
+								<div class="d-flex align-items-center">
+									<div class="pl-3">
+										<p class="name">Leanna Higgs</p>
+										<span class="position">Daycare Owner</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!--------Start of FAQ------->
+
+<section class="ftco-section ftco-no-pt bg-light ftco-faqs">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="img-faqs w-100">
+					<div class="img mb-4 mb-sm-0"
+						style="background-image:url({{url_for('static', filename='website_static/images/about-2.png')}});">
+					</div>
+					<div class="img img-2 mb-4 mb-sm-0"
+						style="background-image:url({{url_for('static', filename='website_static/images/about-1.png')}});">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6 pl-lg-5">
+				<div class="heading-section mb-5 mt-5 mt-lg-0">
+					<span class="subheading">FAQs</span>
+					<h2 class="mb-3">Frequently Asks Questions</h2>
+					<p>Have a question? Check out our most common questions below</p>
+				</div>
+				<div id="accordion" class="myaccordion w-100" aria-multiselectable="true">
+					<div class="card">
+						<div class="card-header p-0" id="headingOne">
+							<h2 class="mb-0">
+								<button href="#collapseOne"
+									class="d-flex py-3 px-4 align-items-center justify-content-between btn btn-link"
+									data-parent="#accordion" data-toggle="collapse" aria-expanded="true"
+									aria-controls="collapseOne">
+									<p class="mb-0">Is Flow only for large businesses?</p>
+									<i class="fa" aria-hidden="true"></i>
+								</button>
+							</h2>
+						</div>
+						<div class="collapse show" id="collapseOne" role="tabpanel" aria-labelledby="headingOne">
+							<div class="card-body py-3 px-0">
+								<ul>
+									<li>Flow is for anyone who wants to track their finances</li>
+									<li>It doesnt matter if your a company with 100 employees or an independent
+										contractor working by yourself, Flow is for everyone</li>
+									<li>Anyone who signs up for Flow gains access to all of Flow's features. You just
+										have to choose which ones you want to use!</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-header p-0" id="headingTwo" role="tab">
+							<h2 class="mb-0">
+								<button href="#collapseTwo"
+									class="d-flex py-3 px-4 align-items-center justify-content-between btn btn-link"
+									data-parent="#accordion" data-toggle="collapse" aria-expanded="false"
+									aria-controls="collapseTwo">
+									<p class="mb-0">What if I have no expereince with accounting?</p>
+									<i class="fa" aria-hidden="true"></i>
+								</button>
+							</h2>
+						</div>
+						<div class="collapse" id="collapseTwo" role="tabpanel" aria-labelledby="headingTwo">
+							<div class="card-body py-3 px-0">
+								<ul>
+									<li>Flow comes with a step by step user manual to walk you through setting up your
+										account.</li>
+									<li>It also shows you all the features Flow has to offer and how to utilize each
+										one.</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-header p-0" id="headingThree" role="tab">
+							<h2 class="mb-0">
+								<button href="#collapseThree"
+									class="d-flex py-3 px-4 align-items-center justify-content-between btn btn-link"
+									data-parent="#accordion" data-toggle="collapse" aria-expanded="false"
+									aria-controls="collapseThree">
+									<p class="mb-0">Am I locked into a contract if I sign up?</p>
+									<i class="fa" aria-hidden="true"></i>
+								</button>
+							</h2>
+						</div>
+						<div class="collapse" id="collapseThree" role="tabpanel" aria-labelledby="headingTwo">
+							<div class="card-body py-3 px-0">
+								<ul>
+									<li>There are no contracts when you sign up for Flow, ever.</li>
+									<li>Each member can choose to pay monthly or annually.</li>
+									<li>With our monthly membership you can cancel at any time.</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-header p-0" id="headingFour" role="tab">
+							<h2 class="mb-0">
+								<button href="#collapseFour"
+									class="d-flex py-3 px-4 align-items-center justify-content-between btn btn-link"
+									data-parent="#accordion" data-toggle="collapse" aria-expanded="false"
+									aria-controls="collapseFour">
+									<p class="mb-0">Who will have access to my data?</p>
+									<i class="fa" aria-hidden="true"></i>
+								</button>
+							</h2>
+						</div>
+						<div class="collapse" id="collapseFour" role="tabpanel" aria-labelledby="headingTwo">
+							<div class="card-body py-3 px-0">
+								<ul>
+									<li>We will never sell your data to any 3rd party, including your email address</li>
+									<li>CR Tech Solutions, LLC is the only company that will have access to your data
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!---------Email Sign-up---------->
+
+<section class="ftco-section ftco-no-pb ftco-no-pt bg-secondary">
+	<div class="container py-5">
+		<div class="row">
+			<div class="col-md-7 d-flex align-items-center">
+				<h2 class="mb-3 mb-sm-0" style="color:black; font-size: 22px;">Sign Up for Flow promotions and news
+					about
+					upcoming products!</h2>
+			</div>
+			<div class="col-md-5 d-flex align-items-center">
+				<form action="{{url_for('about')}}" method="POST" class="subscribe-form">
+					<div class="form-group d-flex">
+						{{ form2.hidden_tag() }}
+						{{ wtf.form_field(form2.email2) }}
+						<input type="submit" value="Subscribe" id="submit2" name="submit2" class="submit px-3">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,364 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0  maximum-scale=1.0,">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Flow</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/img/flowLogo.png' )}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bootstrap-grid.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bootstrap-reboot.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/Chart.css') }}">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
+    <script src="{{ url_for('static', filename='assets/js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/popper.js') }}"></script>
+
+</head>
+
+{% block bodytag %}{% endblock %}
+
+<div class="row w-100 bg-light no-gutters contentArea">
+    <div class="navArea col-2 bg-secondary h-100">
+        <div class="h-90">
+            <div class="col-11 text-center">
+                <img src="{{ url_for('static', filename='business_logos/' + current_user.businesslogo) }}" alt="Flow"
+                    class="w-75 mt-2 mb-2">
+            </div>
+
+            <!--flow navbar content--->
+
+            <nav class="col-12 mx-auto h-75">
+
+                <div class="modernnav h-100" id="navbarSupportedContent" style="font-size: small;">
+                    <ul class="navbar-nav h-100">
+
+                        <li id="nav-item" style="height: 8%;">
+                            <a id="nav-link" href="{{url_for('overview')}}"><i
+                                    class="fas fa-tachometer-alt"></i>Overview</a>
+                        </li>
+                        <div class="dropdown-few" style="height: 8%; width: 100%;">
+                            <li id="nav-item" style="height: 100%; width: 100%;">
+                                <a id="nav-link"><i class="fa fa-user-plus" aria-hidden="true"></i>New Entry ></a>
+                                <div class="dropdown-content" style="width: 100%;">
+                                    <a href="{{url_for('newAccount')}}" style="width: 100%;">Add to Accounts</a>
+                                    <a href="{{url_for('newVendor')}}" style="width: 100%;">New Vendor</a>
+                                    <a href="{{url_for('newCustomer')}}" style="width: 100%;">New Customer</a>
+                                    <a href="{{url_for('newEquipment')}}" style="width: 100%;">New Equipment</a>
+                                    <a href="{{url_for('newTransaction')}}" style="width: 100%;">New Transaction</a>
+                                    <a href="{{url_for('newPayable')}}" style="width: 100%;">Outstanding Payable</a>
+                                    <a href="{{url_for('newReceivable')}}" style="width: 100%;">New Invoice</a>
+                                    <a href="{{url_for('newOwnerInvestment')}}" style="width: 100%;">Owner
+                                        Investment</a>
+                                    <a href="{{url_for('newLongTermDebt')}}" style="width: 100%;">Long-Term Debt</a>
+                                </div>
+                        </div>
+                        </li>
+                        <div class="dropdown-few" style="height: 8%; width: 100%;">
+                            <li id="nav-item" style="height: 100%; width: 100%;">
+                                <a id="nav-link"><i class="fa fa-eye" aria-hidden="true"></i>View ></a>
+                                <div class="dropdown-content-view" style="width: 100%;">
+                                    <a href="{{url_for('viewDebts')}}" style="width: 100%;">Debts</a>
+                                    <a href="{{url_for('viewEquipment')}}" style="width: 100%;">Equipment</a>
+                                    <a href="{{url_for('viewInvestments')}}" style="width: 100%;">Investments</a>
+                                    <a href="{{url_for('transactions')}}" style="width: 100%;">Transactions</a>
+                                    <a href="{{url_for('accounts')}}" style="width: 100%;">Accounts</a>
+                                    <a href="{{url_for('viewReceivables')}}" style="width: 100%;">Invoices</a>
+                                    <a href="{{url_for('viewPayables')}}" style="width: 100%;">Payables</a>
+                                    <a href="{{url_for('viewBalances')}}" style="width: 100%;">Balances</a>
+                                </div>
+                        </div>
+                        </li>
+                        <div class="dropdown-few" style="height: 8%; width: 100%;">
+                            <li id="nav-item" style="height: 100%; width: 100%;">
+                                <a id="nav-link"><i class="fa fa-list-alt" aria-hidden="true"></i>Lists></a>
+                                <div class="dropdown-content-list" style="width: 100%;">
+                                    <a href="{{url_for('viewCustomers')}}" style="width: 100%;">Customer List</a>
+                                    <a href="{{url_for('viewVendors')}}" style="width: 100%;">Vendor List</a>
+                                </div>
+                        </div>
+                        </li>
+                        <li id="nav-item" style="height: 8%;">
+                            <a id="nav-link" href="{{url_for('statements')}}"><i class="fa fa-folder-open"
+                                    aria-hidden="true"></i>Statements</a>
+                        </li>
+                        <li id="nav-item" style="height: 8%;">
+                            <a id="nav-link" href="{{url_for('accountChart')}}"><i
+                                    class="far fa-chart-bar"></i>Chart of Accounts</a>
+                        </li>
+                        <li id="nav-item" style="height: 8%;">
+                            <a id="nav-link" href="{{url_for('businessInfo')}}"><i class="fa fa-info"
+                                    aria-hidden="true"></i>Business Info</a>
+                        </li>
+                        <li id="nav-item" style="height: 8%;">
+                            <a id="nav-link" href="{{url_for('feedback')}}"><i class="fa fa-question"
+                                    aria-hidden="true"></i>Feedback</a>
+                        </li>
+                        <li id="nav-item" style="height: 8%;">
+                            <a id="nav-link" data-toggle="modal" data-target="#logOutValidation"><i class="fa fa-arrow-left"
+                                    aria-hidden="true"></i>Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <style>
+                * {
+                    margin: 0;
+                    padding: 0;
+                }
+
+                i {
+                    margin-right: 10px;
+
+                }
+
+                /*----------flow app navbar css------------*/
+
+                #navbarSupportedContent li {
+                    list-style-type: none;
+                    float: left;
+                }
+
+                #navbarSupportedContent ul li a {
+                    color: white;
+                    text-decoration: none;
+                    line-height: 100%;
+                    font-size: 15px;
+                    display: inline-block;
+                    padding: 20px 20px;
+                    transition-duration: 0.25s;
+                    transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                    position: relative;
+                }
+
+                #nav-item:hover {
+                    color: white;
+                    background-color: #1ba12d;
+                    border-top-left-radius: 15px;
+                    border-top-right-radius: 15px;
+                    border-bottom-left-radius: 15px;
+                    border-bottom-right-radius: 15px;
+                    cursor: default;
+                }
+
+                #nav-link:hover{
+                    cursor: default;
+                }
+
+                #navbarSupportedContent>ul>li.active>a {
+                    color: white;
+                    background-color: transparent;
+                    transition: all 0.7s;
+
+                }
+
+                .dropdown-few {
+                    position: relative;
+                    display: inline-block;
+                }
+
+                .dropdown-content {
+                    display: none;
+                    position: absolute;
+                    background-color: #6c757d;
+                    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                    z-index: 2;
+                    overflow-y: scroll;
+                    top: 1em;
+                    left: 1em;
+                    height: 400px;
+                    width: 175px;
+                    left: 130px;
+                }
+
+                .dropdown-content a {
+
+                    padding-left: 20px;
+                    padding-right: 20px;
+                    text-decoration: none;
+                    display: inline-block;
+                    width: 40px 40px;
+                    cursor: default;
+                    background-repeat: no-repeat;
+                }
+
+                .dropdown-content-list {
+                    display: none;
+                    position: absolute;
+                    background-color: #6c757d;
+                    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                    z-index: 2;
+                    top: 1em;
+                    left: 1em;
+                    height: 125px;
+                    width: 150px;
+                    left: 115px;
+                }
+
+                .dropdown-content-list a {
+                    padding-left: 20px;
+                    padding-right: 20px;
+                    text-decoration: none;
+                    display: none;
+                    width: 40px 40px;
+                    cursor: default;
+                    background-repeat: no-repeat;
+                }
+
+                .dropdown-content-view {
+                    display: none;
+                    position: absolute;
+                    background-color: #6c757d;
+                    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                    z-index: 2;
+                    overflow-y: scroll;
+                    top: 1em;
+                    left: 1em;
+                    height: 400px;
+                    width: 150px;
+                    left: 115px;
+                }
+
+                .dropdown-content-view a {
+
+                    padding-left: 20px;
+                    padding-right: 20px;
+                    text-decoration: none;
+                    display: none;
+                    width: 40px 40px;
+                    cursor: default;
+                    background-repeat: no-repeat;
+                }
+
+                .dropdown-few:hover .dropdown-content {
+                    display: inline-block;
+                }
+
+                .dropdown-content a:hover {
+                    background-color: #1ba12d;
+                }
+
+                .dropdown-few:hover .dropdown-content-list {
+                    display: inline-block;
+                }
+
+                .dropdown-content-list a:hover {
+                    background-color: #1ba12d;
+                }
+
+                .dropdown-few:hover .dropdown-content-view {
+                    display: inline-block;
+                }
+
+                .dropdown-content-view a:hover {
+                    background-color: #1ba12d;
+                }
+            </style>
+
+
+
+            <script type="text/javascript">
+                // ---------Responsive-navbar-active-animation-----------
+
+
+
+
+                function test() {
+                    var tabsNewAnim = $('#navbarSupportedContent');
+                    var selectorNewAnim = $('#navbarSupportedContent').find('li').length;
+                    var activeItemNewAnim = tabsNewAnim.find('.active');
+                    var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
+                    var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
+                    var itemPosNewAnimTop = activeItemNewAnim.position();
+                    var itemPosNewAnimLeft = activeItemNewAnim.position();
+                    $(".hori-selector").css({
+                        "top": itemPosNewAnimTop.top + "px",
+                        "left": itemPosNewAnimLeft.left + "px",
+                        "height": activeWidthNewAnimHeight + "px",
+                        "width": activeWidthNewAnimWidth + "px"
+                    });
+                    $("#navbarSupportedContent").on("click", "li", function (e) {
+                        $('#navbarSupportedContent ul li').removeClass("active");
+                        $(this).addClass('active');
+                        var activeWidthNewAnimHeight = $(this).innerHeight();
+                        var activeWidthNewAnimWidth = $(this).innerWidth();
+                        var itemPosNewAnimTop = $(this).position();
+                        var itemPosNewAnimLeft = $(this).position();
+                        $(".hori-selector").css({
+                            "top": itemPosNewAnimTop.top + "px",
+                            "left": itemPosNewAnimLeft.left + "px",
+                            "height": activeWidthNewAnimHeight + "px",
+                            "width": activeWidthNewAnimWidth + "px"
+                        });
+                    });
+                }
+                $(document).ready(function () {
+                    setTimeout(function () { test(); });
+                });
+                $(window).on('resize', function () {
+                    setTimeout(function () { test(); }, 500);
+                });
+                $(".navbar-toggler").click(function () {
+                    setTimeout(function () { test(); }, 3000);
+                });
+            </script>
+
+
+        </div>
+        <div class="col-12 no-gutters text-center align-self-bottom h-3">
+            <p class="text-light mt-4">{{ current_user.businessname }}</p>
+        </div>
+    </div>
+
+    <div class="modal fade" id="logOutValidation" tabindex="-1" role="dialog" aria-labelledby="logOutValidation"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <p>Are you sure you want to log out? </p>
+                    <p class="text-danger">Be sure to log out after your session is complete</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal">Cancel</button>
+                    <a href="{{ url_for('logout') }}" style="text-decoration: none;"><button type="button" data-toggle="modal" data-target="#logOutValidation">Log
+                            Out</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    {% if current_user.member == True %}
+    {% block content %} {% endblock %}
+    {% endif %}
+
+    {% if current_user.member ==False %}
+    <div class="col-10 row no-gutters justify-content-center">
+        <h3 class="col-12 text-center text-light bg-danger h-10">
+            To use Flow, you must set up your subscription. If your subscription ended, you will have to restart it.
+        </h3>
+        <div class="col-12 h-80 text-center">
+            <a href="{{ url_for('subscribe') }}"><button>Subscribe</button></a>
+        </div>
+    </div>
+    {% endif %}
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='assets/js/miscFunctions.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/Chart.bundle.min.js') }}"></script>
+    </body>
+
+</html>

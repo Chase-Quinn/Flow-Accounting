@@ -1,0 +1,132 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Flow</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/img/flowLogo.png' )}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bootstrap-grid.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bootstrap-reboot.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/Chart.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+
+<body class="bg-dark">
+
+    <script>
+        $('select').on('change', function () {
+            alert(this.value);
+        });</script>
+
+    <div class="col-12 row no-gutters h-100 w-100">
+        <form method="POST" action="{{url_for('signup')}}" method="post" enctype="multipart/form-data" class="mt-2"
+            id="signup">
+            <div class="col-12 text-center">
+                <img src="{{ url_for('static', filename='assets/img/flowLogo.png') }}" alt="Flow" style="height: 5rem;">
+            </div>
+            <h1 class="col-12 text-light text-center">Flow - Accounting Simplified</h1>
+            <hr>
+
+            <!-- One "tab" for each step in the form: -->
+            <div class="row col-12 no-gutters justify-content-center">
+                <div class="card col-xl-9 col-lg-10 col-md-11 mb-5">
+                    <div class="form-group row col-11 mx-auto justify-content-center text-dark mt-2">
+                        {{ form.hidden_tag() }}
+                        <div class="col-xl-6 col-md-10">
+                            {{ wtf.form_field(form.firstname) }}
+                        </div>
+                        <div class="col-xl-6 col-md-10">
+                            {{ wtf.form_field(form.lastname) }}
+                        </div>
+                        <div class="col-xl-6 col-md-10">
+                            {{ wtf.form_field(form.email) }}
+                        </div>
+                        <div class="col-xl-6 col-md-10">
+                            {{wtf.form_field(form.username) }}
+                        </div>
+                        <div class="col-xl-6 col-md-10">
+                            {{wtf.form_field(form.password) }}
+                        </div>
+                        <div class="col-xl-6 col-md-10">
+                            {{wtf.form_field(form.validatepassword) }}
+                        </div>
+                        <div class="col-xl-6 col-md-10">
+                            {{ wtf.form_field(form.businessname) }}
+                        </div>
+                        <div class="col-xl-6 col-md-10">
+                            {{ wtf.form_field(form.businesswebsite) }}
+                        </div>
+                        <div class="col-xl-6 col-md-10">
+                            {{ wtf.form_field(form.businessaddress) }}
+                        </div>
+                        <div class="col-xl-6 col-md-10">
+                            {{ wtf.form_field(form.businesscity) }}
+                        </div>
+                        <div class="col-xl-10 col-md-8 col-sm-9">
+                            {{ wtf.form_field(form.businesszip) }}
+                        </div>
+                        <div class="col-xl-2 col-md-2 col-sm-3">
+                            {{ wtf.form_field(form.businessstate) }}
+                        </div>
+                        <div class="col-xl-6 col-md-10">
+                            {{ wtf.form_field(form.fiscalyearstart) }}
+                        </div>
+                        <div class="col-xl-6 col-md-10">
+                            {{ wtf.form_field(form.fiscalyearend) }}
+                        </div>
+                        <div class="col-xl-6 col-md-10 text-success">
+                            {{ wtf.form_field(form.bankname) }}
+                        </div>
+                        <div class="col-xl-6 col-md-10 text-success">
+                            {{ wtf.form_field(form.bankbalance) }}
+                        </div>
+                        <div class="col-xl-12 text-center">
+                            {{ wtf.form_field(form.businesslogo) }}
+                        </div>
+                        <div class="col-12 text-center">
+                            <button type="submit">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+
+
+
+    <div class="modal fade" id="SignUpValidation" tabindex="-1" role="dialog" aria-labelledby="SignUpValidation"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <p> You have successfully created your account </p>
+                    <p class="text-danger">You will now be redirected...</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='assets/js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/popper.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/Chart.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/chartFunctions.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/graphFunctions.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/miscFunctions.js') }}"></script>
+</body>
+
+</html>

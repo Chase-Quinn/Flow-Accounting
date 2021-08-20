@@ -1,0 +1,51 @@
+{% extends "details/detail_template.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+
+<div class="col-12 row no-gutters vw-100" id="content">
+    <div class="col-12 row no-gutters justify-content-center">
+        <h2>Customer Name: {{customer.customername}}</h2>
+    </div>
+    <div class="col-12 row justify-content-center">
+        <div class="col-12 card">
+            <table class="table">
+                <tr>
+                    <th scope="row">Customer ID:</th>
+                    <td>{{customer.customerid}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Customer Address</th>
+                    <td>{{customer.customeraddress}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Customer City:</th>
+                    <td>{{customer.customercity}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Customer State:</th>
+                    <td>{{customer.customerstate}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Customer Zipcode:</th>
+                    <td>{{customer.customerzip}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Customer Phone Number:</th>
+                    <td>{{customer.customernumber}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Customer Term:</th>
+                    <td>{{customer.customerterm}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <hr>
+</div>
+
+<hr>
+
+
+
+{% endblock %}

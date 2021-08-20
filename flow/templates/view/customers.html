@@ -1,0 +1,173 @@
+{% extends "main_template.html" %}
+
+{% block bodytag %}
+<body class="vh-100 vw-100">
+{% endblock %}
+
+
+{% block content %}
+
+<script>
+    $(document).ready(function () {
+        var messages = "{{ get_flashed_messages() }}";
+
+        if (typeof messages != 'undefined' && messages != '[]') {
+            $("#customerMessage").modal();
+        };
+    });
+
+    jQuery(document).ready(function ($) {
+            $(".clickable-row").click(function () {
+                window.location = $(this).data("href");
+            });
+        });
+</script>
+
+<style>
+    .clickable-row:hover{
+    cursor: pointer !important;
+}
+</style>
+
+<div class="col-10 h-100 bg-dark">
+    <div class="col-12 h-90 no-gutters">
+        <table class="table table-scroll bg-dark table-dark col-12 h-90 text-left">
+            <thead>
+                <tr>
+                    <th scope="column">Account</th>
+                    <th scope="column">Customer Name</th>
+                    <th scope="column">Description</th>
+                    <th scope="column">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+            <tr class="clickable-row" data-href="{{url_for('customerDetails', id=row.customerid)}}">
+                <td>{{row.accountnumber}}</td>
+                <td>{{row.customername}}</td>
+                <td>{{row.customerdescription}}</td>
+                <td>{{row.customerdate}}</td>
+            </tr>
+        {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-12 row no-gutters justify-content-center">
+        <input class="col-4 mr-2" type="search" placeholder="Account Number Search" aria-label="Search"
+            onkeyup="type2search();" id="searchAccount">
+            <button data-toggle="modal" data-target="#modifyCustomer" class="col-4">Modify
+                Customer</button>
+    </div>
+</div>
+
+<div id="customerMessage" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                {% with messages = get_flashed_messages(category_filter=["error"]) %}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-danger text-center">
+                    <div class=flashes>
+                        {% for message in messages %}
+                        {{ message }}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                {% with messages = get_flashed_messages(category_filter=["success"]) %}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success text-center">
+                    <div class=flashes>
+                        {% for message in messages %}
+                        {{ message }}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modifyCustomer" tabindex="-1" role="dialog" aria-labelledby="modifyCustomer"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+        <div class="modal-body">
+            <h2 class="card-title text-center mt-4">Modify Customer</h2>
+            <hr>
+            <form class="mb-3" method="POST" action="{{url_for('viewCustomers')}}">
+                <div class="row no-gutters col-12">
+                    <div class="form-group col-6 mx-auto">
+                        {{ form.hidden_tag() }}
+                        {{ wtf.form_field(form.accountnumber) }}
+                    </div>
+                    <div class="form-group col-6 mx-auto">
+                        {{ wtf.form_field(form.customername) }}
+                    </div>
+                    <div class="form-group col-10 mx-auto">
+                        {{ wtf.form_field(form.customerdescription) }}
+                    </div>
+                    <div class="form-group col-10 mx-auto">
+                        {{ wtf.form_field(form.email) }}
+                    </div>
+                    <div class="form-group col-10 mx-auto">
+                        {{ wtf.form_field(form.address) }}
+                    </div>
+                    <div class="form-group col-6 mx-auto">
+                        {{ wtf.form_field(form.city) }}
+                    </div>
+                    <div class="form-group col-6 mx-auto">
+                        {{ wtf.form_field(form.state) }}
+                    </div>
+                    <div class="form-group col-6 mx-auto">
+                        {{ wtf.form_field(form.zip) }}
+                    </div>
+                    <div class="form-group col-6 mx-auto">
+                        {{ wtf.form_field(form.term) }}
+                    </div>
+                    <div class="form-group col-10 mx-auto">
+                        {{ wtf.form_field(form.number) }}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button>{{ wtf.form_field(form.submit) }}</button>
+                    <button type="button" data-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+    function type2search() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchAccount");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("AccountResults");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+{% endblock %}

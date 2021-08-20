@@ -1,0 +1,82 @@
+{% extends "statements/statement_template.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+
+<form method="GET" action="{{url_for('cashFlowStatementAdjusted')}}" class="mt-5 ml-2">
+  <div class="card">
+      <div class="form-group">
+          <div class="text-center">
+              <label for="betweenDates col-12"><b>Search Between Dates</b></label>
+          </div>
+          <div class="col-12 row text-center">
+              <div class="col-5 mx-auto my-auto">
+                  {{ form.hidden_tag() }}
+                  {{ wtf.form_field(form.rangestart) }}
+              </div>
+              <div class="col-5 mx-auto my-auto">
+                  {{ wtf.form_field(form.rangeend) }}
+              </div>
+              <div class="col-2 mx-auto my-auto">
+                  <button class="h-50 mx-auto">{{ wtf.form_field(form.submit) }}</button>
+              </div>
+          </div>
+      </div>
+  </div>
+</form>
+</div>
+
+<div class="col-12 h-100" id="content">
+    <div class="col-12 no-gutters">
+        <div class="col-12 text-center">
+            <img src="{{ url_for('static', filename='business_logos/' + current_user.businesslogo) }}" alt="" class="col-2">
+            <h5>Cash Flow Statement</h5>
+            <h6>{{ businessname }}</h6>
+            <h6>{{ datestart }} -> {{ dateend }}</h6>
+        </div>
+    </div>
+    <table class="table col-12">
+        <thead class="col-12">
+            <tr class="col-12 text-light bg-secondary">
+                <th scope="col">Cash Flow From Operation</th>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody class="col-12">
+            <tr>
+                <th scope="row">Net Earnings</th>
+                <td>${{ netearnings }}</td>
+            </tr>
+            <tr class="text-light bg-secondary">
+                <th scope="row"><i>Additions</i></th>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">Accounts Receivable</th>
+                <td>${{ accountsreceivable }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Equipment/Assets</th>
+                <td>${{ equipment }}</td>
+            </tr>
+            <tr class="text-light bg-secondary">
+                <th scope="col"><i>Subtractions</i></th>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row">Accounts Payable</th>
+                <td>${{ accountspayable }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Net Expenses</th>
+                <td>${{ netexpenses }}</td>
+            </tr>
+            <tr class="text-light bg-secondary">
+                <th scope="row"><i>Total Cash Flow</i></th>
+                <td>${{ totalcashflow }}</td>
+            </tr>
+        </tbody>
+        </table>
+</div>
+
+{% endblock %}

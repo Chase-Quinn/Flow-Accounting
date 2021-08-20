@@ -1,0 +1,76 @@
+{% extends "statements/statement_template.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+
+<form method="GET" action="{{url_for('equityStatementAdjusted')}}" class="mt-5 ml-2">
+  <div class="card">
+      <div class="form-group">
+          <div class="text-center">
+              <label for="betweenDates col-12"><b>Search Between Dates</b></label>
+          </div>
+          <div class="col-12 row text-center">
+              <div class="col-5 mx-auto my-auto">
+                  {{ form.hidden_tag() }}
+                  {{ wtf.form_field(form.rangestart) }}
+              </div>
+              <div class="col-5 mx-auto my-auto">
+                  {{ wtf.form_field(form.rangeend) }}
+              </div>
+              <div class="col-2 mx-auto my-auto">
+                  <button class="h-50 mx-auto">{{ wtf.form_field(form.submit) }}</button>
+              </div>
+          </div>
+      </div>
+  </div>
+</form>
+</div>
+
+<div class="col-12 h-100" id="content">
+  <div class="col-12 no-gutters">
+    <div class="col-12 text-center">
+      <img src="{{ url_for('static', filename='business_logos/' + current_user.businesslogo) }}" alt="" class="col-2">
+      <h5>Equity Statement</h5>
+      <h6>{{ businessname }}</h6>
+      <h6>{{ startdate }} -> {{ enddate }}</h6>
+    </div>
+  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">End of Last Year: {{ lastyear }}</th>
+        <th scope="col">Capital: ${{ lastyearcapital }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="bg-dark text-light">
+        <th scope="row">Increases</th>
+        <th></th>
+      </tr>
+      <tr>
+        <th scope="row">Investments</th>
+        <td>${{ investments }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Net Income</th>
+        <td>${{ income }}</td>
+      </tr>
+
+      <tr class="bg-dark text-light">
+        <th scope="row">Decreases</th>
+        <th></th>
+      </tr>
+      <tr>
+        <th scope="row">Net Losses</th>
+        <td>${{ losses }}</td>
+      </tr>
+      <tr >
+        <th scope="col">End of Current Year: {{ currentyear }}</th>
+        <th scope="col">Capital: ${{ totalcapital }}</th>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

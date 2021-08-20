@@ -1,0 +1,89 @@
+{% extends "main_template.html" %}
+
+{% block bodytag %}
+<body class="vh-100 vw-100">
+{% endblock %}
+
+{% block content %}
+
+<script>
+    $(document).ready(function () {
+            var messages = "{{ get_flashed_messages() }}";
+
+            if (typeof messages != 'undefined' && messages != '[]') {
+                $("#transactionMessage").modal();
+            };
+        });
+</script>
+
+<div class="col-10 h-100 bg-dark">
+    <div class="row col-12 no-gutters h-100 justify-content-center">
+        <div class="card col-10 my-auto" style="width: 18rem;">
+            <h2 class="card-title text-center mt-4">Feedback</h2>
+            <hr>
+            <div class="col-10">
+                <p>
+                    <b>Thank you for using our product!</b> If you would like to submit any ideas to make it 
+                    even better, use the tool below to submit feedback directly to us.
+                </p>
+            </div>
+            <form class="mb-3" method="GET" action="{{url_for('processFeedback')}}">
+                <div class="form-group col-11 mx-auto">
+                    {{ form.hidden_tag() }}
+                    {{ wtf.form_field(form.feedback, rows="5") }}
+                </div>
+                <div class="col-11 mx-auto">
+                    <button>{{ wtf.form_field(form.submit) }}</button>
+                </div>
+            </form>
+            <div class="col-10 mt-2 mb-3">
+                <p>If you are, or have experienced, an error using this software, click the button below 
+                    to submit a bug report.
+                </p>
+
+                <a href="{{ url_for('bugReport') }}"><button>Report an error</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div id="transactionMessage" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                {% with messages = get_flashed_messages(category_filter=["error"]) %}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-danger text-center">
+                    <div class=flashes>
+                        {% for message in messages %}
+                        {{ message }}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                {% with messages = get_flashed_messages(category_filter=["success"]) %}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success text-center">
+                    <div class=flashes>
+                        {% for message in messages %}
+                        {{ message }}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

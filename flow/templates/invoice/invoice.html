@@ -1,0 +1,38 @@
+{% extends "invoice/invoice_template.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+
+<div class="col-12 row no-gutters vw-100" id="content">
+    <div class="col-12 row no-gutters justify-content-center">
+        <h2>Invoice #{{ex}}</h2>
+    </div>
+    <div class="col-12 row justify-content-center">
+        <img src="{{ url_for('static', filename='business_logos/' + current_user.businesslogo) }}" alt=""
+        class="col-2">
+    <div class="col-5 card">
+        <h5>Billing Vendor:</h5>
+                <h3>{{current_user.businessname}}</h3>
+                <h5>{{current_user.businessaddress}}</h5>
+                <h5>{{current_user.businesscity}}, {{current_user.businessstate}} {{current_user.businesszip}}</h5>
+                <h5>{{current_user.businessnumber}}</h5>
+    </div>
+    <div class="col-5 card">
+        <h5>Billing Customer:</h5>
+        <h3>{{customer.customername}}</h3>
+        <h5>{{customer.customeraddress}}</h5>
+        <h5>{{customer.customercity}}, {{customer.customerstate}} {{customer.customerzip}}</h5>
+        <h5>{{customer.customernumber}}</h5>
+    </div>
+</div>
+
+<hr>
+
+
+</div>
+
+<hr>
+
+
+
+{% endblock %}

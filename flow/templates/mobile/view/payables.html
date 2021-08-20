@@ -1,0 +1,172 @@
+{% extends "main_template.html" %}
+
+{% block bodytag %}
+
+<body class="vh-100 vw-100">
+    {% endblock %}
+
+
+    {% block content %}
+
+    <script>
+        function formatDate(date) {
+            var d = new Date(date),
+                month = '' + (d.getMonth() + 1),
+                day = '' + d.getDate(),
+                year = d.getFullYear();
+
+            if (month.length < 2)
+                month = '0' + month;
+            if (day.length < 2)
+                day = '0' + day;
+
+            return [year, month, day].join('-');
+        }
+        date = new Date();
+        var o = formatDate(date);
+
+        $(document).ready(function () {
+            var messages = "{{ get_flashed_messages() }}";
+
+            if (typeof messages != 'undefined' && messages != '[]') {
+                $("#customerMessage").modal();
+            };
+        });
+        
+        $(document).ready(function () {
+            $('.duedate').each(function (i, v) {
+                if (v.textContent < o) {
+                    $(v.parentElement).addClass('table-danger text-dark');
+                }
+            })
+        })
+    </script>
+
+    <div class="col-10 h-100 bg-dark">
+        <div class="col-12 h-90 no-gutters">
+            <table class="table table-dark table-scroll bg-dark text-left col-12 h-90">
+                <thead>
+                    <th scope="col">Account</th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Method</th>
+                    <th scope="col">Source</th>
+                    <th scope="col">Desc/P.O. #</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Reason</th>
+                    <th scope="col">Due Date</th>
+                </thead>
+                <tbody>
+                    {% for row in rows %}
+                    <tr>
+                        <td>{{row.accountid}}</td>
+                        <td>{{row.transactionid}}</td>
+                        <td>{{row.transactionmethod}}</td>
+                        <td>{{row.transactionsource}}</td>
+                        <td>{{row.transactiondescription}}</td>
+                        <td>${{row.totalamount}}</td>
+                        <td>{{row.transactionreason}}</td>
+                        <td class="duedate">{{row.duedate}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12 row no-gutters justify-content-center">
+            <input class="col-3 mr-2" type="search" placeholder="Account Number Search" aria-label="Search"
+                onkeyup="type2search();" id="searchAccount">
+            <button data-toggle="modal" data-target="#paydelete" class="col-4">Delete
+                Payable</button>
+            <button data-toggle="modal" data-target="#markpaid" class="col-4 btn-success">Mark Paid</button>
+        </div>
+    </div>
+
+    <div id="customerMessage" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    {% with messages = get_flashed_messages(category_filter=["error"]) %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-danger text-center">
+                        <div class=flashes>
+                            {% for message in messages %}
+                            {{ message }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                    {% with messages = get_flashed_messages(category_filter=["success"]) %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-success text-center">
+                        <div class=flashes>
+                            {% for message in messages %}
+                            {{ message }}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="paydelete" tabindex="-1" role="dialog" aria-labelledby="paydelete"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <h2 class="card-title text-center mt-4">Delete Payable</h2>
+                    <hr>
+                    <form class="mb-3" method="GET" action="{{url_for('viewPayables')}}">
+                        <div class="row no-gutters col-12">
+                            <div class="form-group col-5 mx-auto">
+                                {{ form2.hidden_tag() }}
+                                {{ wtf.form_field(form2.transactionnumber2) }}
+                            </div>
+                        <div class="modal-footer">
+                            <button class="btn-danger">{{ wtf.form_field(form2.submit2) }}</button>
+                            <button type="button" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="modal fade" id="markpaid" tabindex="-1" role="dialog" aria-labelledby="markpaid"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <h2 class="card-title text-center mt-4">Mark as Paid</h2>
+                    <hr>
+                    <form class="mb-3" method="GET" action="{{url_for('newExpensePayable')}}">
+                        <div class="row no-gutters col-12">
+                            <div class="form-group col-5 mx-auto">
+                                {{ form.hidden_tag() }}
+                                {{ wtf.form_field(form.transactionnumber) }}
+                            </div>
+                        <div class="row col-12 no-gutters">
+                            <div class="form-group col-11 mx-auto">
+                                {{ wtf.form_field(form.transactiondate) }}
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn-success">{{ wtf.form_field(form.submit) }}</button>
+                            <button type="button" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

@@ -1,0 +1,112 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Flow</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/img/flowLogo.png' )}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bootstrap-grid.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bootstrap-reboot.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/Chart.css') }}">
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+
+<body class="bg-dark">
+    <script>
+        $(document).ready(function () {
+            var messages = "{{ get_flashed_messages() }}";
+
+            if (typeof messages != 'undefined' && messages != '[]') {
+                $("#transactionMessage").modal();
+            };
+        });
+    </script>
+
+    <div class="col-12 row no-gutters vh-100 w-100">
+        <div class="col-12 text-center">
+            <img src="{{ url_for('static', filename='assets/img/flowLogo.png') }}" alt="Flow" style="height: 5rem;"
+                class="mt-2">
+        </div>
+        <h1 class="col-12 text-light text-center">Flow - Accounting Simplified</h1>
+        <hr>
+
+        <!-- One "tab" for each step in the form: -->
+        <div class="form-group row col-11 mx-auto justify-content-center text-light">
+            <h4>Setting up your Flow subscription:</h4>
+            <ol>
+                <li>Set up your subscription below</li>
+                <li>Be SURE to go through the entire process!</li>
+                <li>Start using Flow: Accounting Simplified!</li>
+                <li>If you are having any issues, please click the Report Membership issues button below for an automated notification to our team!</li>
+                <form action="./start_subscription.html" method="POST">
+                    {{ form.hidden_tag() }}
+                    <button>{{ wtf.form_field(form.submit) }}</button>
+                </form>
+            </ol>
+        </div>
+        <div class="col-11 mx-auto justify-content-center row">
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="FVEWNLTXRSZ2A">
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                </form>                
+        </div>
+
+        <div id="transactionMessage" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        {% with messages = get_flashed_messages(category_filter=["error"]) %}
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-danger text-center">
+                            <div class=flashes>
+                                {% for message in messages %}
+                                {{ message }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                        {% with messages = get_flashed_messages(category_filter=["success"]) %}
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-success text-center">
+                            <div class=flashes>
+                                {% for message in messages %}
+                                {{ message }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+        </div>
+    
+
+        <script src="{{ url_for('static', filename='assets/js/jquery.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/popper.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/Chart.bundle.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/chartFunctions.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/graphFunctions.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/miscFunctions.js') }}"></script>
+</body>
+
+</html>

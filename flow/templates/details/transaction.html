@@ -1,0 +1,146 @@
+{% extends "details/detail_template.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+
+{% if trans.transactiontype == 'Income' %}
+<div class="col-12 row no-gutters vw-100" id="content">
+    <div class="col-12 row no-gutters justify-content-center mb-5">
+        <h1 class="col-12 text-center">Receipt</h1>
+        <h6 class="col-12 text-center">Account: {{trans.accountid}}</h6>
+        <h6 class="col-12 text-center">#: {{trans.transactionid}}</h6>
+        <h6 class="col-12 text-center">{{trans.transactiondate}}</h6>
+        <hr>
+    </div>
+
+    <div class="col-12 row no-gutters mb-5">
+        <div class="col-4">
+            Vendor:
+            <div class="card col-12">
+            {{current_user.businessname}} <br>
+            {{current_user.businessaddress}} <br>
+            {{current_user.businesscity}}, {{current_user.businessstate}} {{current_user.businesszip}} <br>
+            {{current_user.businessnumber}} <br>
+            {{current_user.email}}
+            </div>
+        </div>
+        <div class="col-4">
+        </div>
+        <div class="col-4">
+            Customer:
+            <div class="card col-12">
+                {{customer.customername}} <br>
+                {{customer.customeraddress}} <br>
+                {{customer.customerstate}} {{customer.customerzip}} <br>
+                {{customer.customernumber}} <br>
+                {{customer.customeremail}}
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-5 mb-5 col-12 row no-gutters">
+        <table class="table">
+            <tr>
+                <th scope="row">Description of Sale:</th>
+                <td>{{trans.transactiondescription}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="card mt-5 col-12 row no-gutters">
+        <table class="table mb-3">
+            <tr>
+                <th scope="row">Payment Method:</th>
+                <td>{{trans.transactionmethod}}</td>
+            </tr>
+        </table>
+
+        <table class="table mt-5">
+            <tr>
+                <th scope="row">Pre-Tax Total:</th>
+                <td>${{trans.pretaxtotal}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Sales-Tax:</th>
+                <td>${{trans.salestax}}</td>
+            </tr>
+            <tr>
+                <th scope="row">Total:</th>
+                <td>${{trans.totalamount}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="card mt-5 col-12 row no-gutters">
+        <table class="table">
+            <tr>
+                <th scope="row">Paid In Full</th>
+                <td>Yes</td>
+            </tr>
+        </table>
+    </div>
+{% endif %}
+
+{% if trans.transactiontype == 'Expense' %}
+<div class="col-12 row no-gutters vw-100" id="content">
+    <div class="col-12 row no-gutters justify-content-center">
+        <h2>Transaction ID: {{trans.transactionid}}</h2>
+    </div>
+    <div class="col-12 row justify-content-center">
+        <div class="col-12 card">
+            <table class="table">
+                <tr>
+                    <th scope="row">Transaction ID:</th>
+                    <td>{{trans.transactionid}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Transaction Account:</th>
+                    <td>{{trans.accountid}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Transaction Vendor:</th>
+                    <td>{{trans.transactionsource}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Transaction Type:</th>
+                    <td>{{trans.transactiontype}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Transaction Method:</th>
+                    <td>{{trans.transactionmethod}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Transaction Description:</th>
+                    <td>{{trans.transactiondescription}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Transaction Pre-Tax Total:</th>
+                    <td>${{trans.pretaxtotal}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Transaction Sales Tax:</th>
+                    <td>${{trans.salestax}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Transaction Total Amount:</th>
+                    <td>${{trans.totalamount}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Transaction Reason:</th>
+                    <td>{{trans.transactionreason}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Transaction Date:</th>
+                    <td>{{trans.transactiondate}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <hr>
+</div>
+
+<hr>
+{% endif %}
+
+
+    {% endblock %}

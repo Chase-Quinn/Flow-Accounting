@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\flow",
+    "\\flow\\static",
+    "\\flow\\static\\assets",
+    "\\flow\\static\\website_static",
+    "\\flow\\static\\website_static\\css",
+    "\\flow\\static\\website_static\\js",
+    "\\flow\\templates"
+  ],
+  "SelectedNode": "\\flow\\templates\\index.html",
+  "PreviewInSolutionExplorer": false
+}

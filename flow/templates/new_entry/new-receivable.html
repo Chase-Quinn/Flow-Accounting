@@ -1,0 +1,89 @@
+{% extends "main_template.html" %}
+
+{% block bodytag %}
+<body class="vh-100 vw-100">
+{% endblock %}
+
+{% block content %}
+
+<script>
+    function filltotal() {
+        var a = parseFloat($('#pretaxtotal').val()) + parseFloat($('#salestax').val());
+        var total = a.toFixed(2);
+        $("#totalamount").val(total);
+    }
+</script>
+
+<div class="col-10 h-100 bg-dark">
+    <div class="row col-12 no-gutters h-100 justify-content-center">
+        <div class="card col-10 my-auto">
+            <h2 class="card-title text-center mt-4">New Invoice</h2>
+            <hr>
+            {% with messages = get_flashed_messages(category_filter=["success"]) %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-success text-center">
+                            <div class=flashes>
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {% with messages = get_flashed_messages(category_filter=["error"]) %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-danger text-center">
+                            <div class=flashes>
+                            {% for message in messages %}
+                                {{ message }}
+                            {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form action="{{url_for('newReceivable')}}" method="POST" class="mb-3">
+                <div class="row no-gutters col-12 justify-content-center">
+                    <div class="form-group col-xl-5 mx-auto">
+                        {{ form.hidden_tag() }}
+                        {{ wtf.form_field(form.transactionsource) }}
+                    </div>
+                    <div class="form-group col-xl-5 mx-auto">
+                        {{ wtf.form_field(form.transactiondescription) }}
+                    </div>
+                    <div class="form-group col-xl-5 mx-auto">
+                        {{ wtf.form_field(form.pretaxtotal) }}
+                    </div>
+                    <div class="form-group col-xl-5 mx-auto">
+                        {{ wtf.form_field(form.salestax) }}
+                    </div>
+                    <div class="col-xl-5 row no-gutters mx-auto">
+                        <div class="form-group col-xl-7 float-left">
+                            {{ wtf.form_field(form.totalamount) }}
+                        </div>
+                        <div class="form-group col-xl-4 mx-auto my-auto">
+                            <button class="col-12" type="button" onclick="filltotal()">Fill Total</button>
+                        </div>
+                    </div>
+                    <div class="form-group col-xl-5 mx-auto">
+                        {{ wtf.form_field(form.transactionmethod) }}
+                    </div>
+                    <div class="form-group col-xl-5 mx-auto">
+                        {{ wtf.form_field(form.transactionreason) }}
+                    </div>
+                    <div class="form-group col-xl-5 mx-auto">
+                        {{ wtf.form_field(form.duedate) }}
+                    </div>
+                    <div class="col-11 mx-auto">
+                        <button type="submit">Open Invoice</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

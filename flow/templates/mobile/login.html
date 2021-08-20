@@ -1,0 +1,50 @@
+{% extends "login_template.html" %}
+{% block content %}
+
+<img class="card-img-top col-xl-2 col-sm-3 mx-auto" src="{{ url_for('static', filename='assets/img/flowLogo.png') }}"
+    alt="Flow - Accounting Simplified">
+<div class="card-body">
+    <h5 class="card-title text-center text-light">Flow</h5>
+    <h6 class="card-subtitle mb-2 text-light text-center">Accounting Simplified</h6>
+    <div class="col-xl-6 col-sm-10 mx-auto">
+        {% with messages = get_flashed_messages(category_filter=["error"]) %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-danger text-center">
+                        <div class=flashes>
+                           {% for message in messages %}
+                            {{ message }}
+                           {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% with messages = get_flashed_messages(category_filter=["success"]) %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success text-center">
+                        <div class=flashes>
+                           {% for message in messages %}
+                            {{ message }}
+                           {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form method="POST" action="{{url_for('login')}}" class="text-light">
+            <div class="form-group mx-auto">
+                {{ form.hidden_tag() }}
+                {{ wtf.form_field(form.username) }}
+                {{ wtf.form_field(form.password) }}
+            </div>
+            <div class="mx-auto">
+                <button type="submit">Log In</button>
+                <a href="{{url_for('forgotPassword')}}"><button type="button">Forgot Password</button></a>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

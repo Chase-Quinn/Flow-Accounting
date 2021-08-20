@@ -1,0 +1,197 @@
+﻿{% extends "website_template.html" %} {% block content %}
+
+<section class="hero-wrap hero-wrap-2"
+    style="background-image: url({{url_for('static', filename='website_static/images/services_bg.png')}});"
+    data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end">
+            <div class="col-md-9 ftco-animate pb-5">
+                <h1 class="mb-0 bread">Services</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="ftco-section ftco-no-pt bg-light">
+    <div class="container">
+        <div class="row d-flex no-gutters">
+            <div class="col-md-6 d-flex">
+                <div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0"
+                    id="heropicture"
+                    style="background-image:url({{url_for('static', filename='website_static/images/about.png')}});">
+                </div>
+            </div>
+            <div class="col-md-6 pl-md-5 py-md-5">
+                <div class="heading-section pl-md-4 pt-md-5 text-center">
+                    <span class="subheading">Welcome to Flow</span>
+                    <h3 class="mb-4">Accounting has never been easier</h3>
+                </div>
+                <div class="services-2 w-100 d-flex">
+                    <div class="icon d-flex align-items-center justify-content-center"><span
+                            class="flaticon-wealth"></span></div>
+                    <div class="text pl-4">
+                        <h4>Great Features, Great Price!</h4>
+                        <p>Flow gives you the ability to track your finances, asset depreciation, investments, and
+                            various other great features! All of this is within our $2.99 a month price!</p>
+                    </div>
+                </div>
+                <div class="services-2 w-100 d-flex">
+                    <div class="icon d-flex align-items-center justify-content-center"><span
+                            class="flaticon-accounting-1"></span></div>
+                    <div class="text pl-4">
+                        <h4>Free Financial Reporting</h4>
+                        <p>Usually, you might have to pay for your statements, or to access certain ones. Flow
+                            autogenerates your reports right when you tell it to! You can do it between timelines, or
+                            just within your fiscal year!</p>
+                    </div>
+                </div>
+                <div class="services-2 w-100 d-flex">
+                    <div class="icon d-flex align-items-center justify-content-center"><span
+                            class="flaticon-teamwork"></span></div>
+                    <div class="text pl-4">
+                        <h4>24/7 Customer Support</h4>
+                        <p>Our support team is always there to answer any questions you may have</p>
+                    </div>
+                </div>
+                <div class="services-2 w-100 d-flex">
+                    <div class="icon d-flex align-items-center justify-content-center"><span
+                            class="flaticon-tax"></span></div>
+                    <div class="text pl-4">
+                        <h4>Unlimited Invoicing</h4>
+                        <p>Tired of paying for invoicing? We give you the ability to generate open invoices, which are
+                            kept on file unless you delete them. You can download, email, and print them for your
+                            records if you need paper copies!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    @media only screen and (max-width: 768px) {
+        #heropicture {
+            display: none !important;
+        }
+
+    }
+</style>
+
+<!---end of info, start of counting section-->
+
+<section class="ftco-section bg-light ftco-no-pt">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-3 d-flex services align-self-stretch px-4 ftco-animate">
+                <div class="d-block">
+                    <div class="icon d-flex mr-2">
+                        <span class="flaticon-accounting-1"></span>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="heading">Financial Statements</h3>
+                        <p>Balance Statements, Cashflow Statements, Equity Statements, Profit/Loss Statements, Total
+                            Loss Statements, and more!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 d-flex services align-self-stretch px-4 ftco-animate">
+                <div class="d-block">
+                    <div class="icon d-flex mr-2">
+                        <span class="flaticon-accounting"></span>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="heading">Your Data, Your way</h3>
+                        <p>Flow gives you complete access to all of your data. Whenever you enter something in to the
+                            software, it is immediately useable anywhere within it!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 d-flex services align-self-stretch px-4 ftco-animate">
+                <div class="d-block">
+                    <div class="icon d-flex mr-2">
+                        <span class="flaticon-loan"></span>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="heading">Data Security</h3>
+                        <p>You can feel confident your data is not being sold with us! We will NEVER sale our customer's
+                            information to any third party!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3 d-flex services align-self-stretch px-4 ftco-animate">
+                <div class="d-block">
+                    <div class="icon d-flex mr-2">
+                        <span class="flaticon-teamwork"></span>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="heading">Service Team</h3>
+                        <p>Any question you may have will gladly be answered by our very experienced customer service
+                            team!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-----Pricing----->
+
+<section class="ftco-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center pb-5 mb-3">
+            <div class="col-md-7 heading-section text-center ftco-animate">
+                <h2>One EASY Plan!</h2>
+                <big>Sign Up today for a FREE 45 day trial</big>
+                <br />
+                <small>*After setting up Flow subscription</small>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-3 ftco-animate">
+                <div class="block-7">
+                    <div class="text-center">
+                        <span class="excerpt d-block">Pay Monthly</span>
+                        <span class="price"><sup>$</sup> <span class="number">2.99</span> <sub>/mo</sub></span>
+
+                        <ul class="pricing-text mb-5">
+                            <li><span class="fa fa-check mr-2"></span>Easy to use</li>
+                            <li><span class="fa fa-check mr-2"></span>Track Transactions</li>
+                            <li><span class="fa fa-check mr-2"></span>Free Financial Reports</li>
+                            <li><span class="fa fa-check mr-2"></span>Unlimited Invoicing</li>
+                            <li><span class="fa fa-check mr-2"></span>24/7 Customer Service</li>
+                        </ul>
+
+                        <a href="{{url_for('signup')}}" class="btn btn-primary d-block px-2 py-3">Sign Up</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section ftco-no-pb ftco-no-pt bg-secondary">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-7 d-flex align-items-center">
+                <h2 class="mb-3 mb-sm-0" style="color:black; font-size: 22px;">Sign Up for Flow promotions and news
+                    about upcoming products!</h2>
+            </div>
+            <div class="col-md-5 d-flex align-items-center">
+                <form action="{{url_for('services')}}" method="POST" class="subscribe-form">
+                    <div class="form-group d-flex">
+                        {{ form2.hidden_tag() }} {{ wtf.form_field(form2.email2) }}
+                        <input type="submit" value="Subscribe" id="submit2" name="submit2" class="submit px-3">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

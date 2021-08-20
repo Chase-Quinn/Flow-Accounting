@@ -1,0 +1,23 @@
+{% extends "main_template.html" %}
+
+{% block bodytag %}
+<body class="vh-100 vw-100">
+{% endblock %}
+
+{% block content %}
+
+<div class="col-10 h-100 bg-dark">
+    <div class="row col-12 no-gutters h-100 justify-content-center">
+        <div class="card col-10 my-auto">
+            <h2 class="card-title text-center mt-4">New Transaction</h2>
+            <hr>
+            <div class="row no-gutters justify-content-center mb-3">
+                <a href="{{ url_for('newIncome') }}" class="col-3 mx-auto"><button class="col-12" style="height: 6rem;">Income</button></a>
+                <a href="{{ url_for('newExpense') }}" class="col-3 mx-auto"><button class="col-12" style="height: 6rem;">Expense</button></a>
+                <a href="{{ url_for('newDebtPayment') }}" class="col-3 mx-auto"><button class="col-12" style="height: 6rem;">Debt Payment</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

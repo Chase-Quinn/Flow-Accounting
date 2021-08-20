@@ -1,0 +1,32 @@
+{% extends "/mobile/mobile_main_template.html" %}
+
+{% block bodytag %}
+<body class="vh-100 vw-100">
+{% endblock %}
+
+{% block content %}
+
+<div class="col-12 h-100 bg-dark">
+    <div class="row col-12 no-gutters h-100">
+        <div class="card col-11 my-auto mx-auto">
+            <h2 class="card-title text-center mt-4">New Transaction</h2>
+            <hr>
+            <div class="row col-12 no-gutters mb-3 justify-content-center">
+                <div class="col-10 mx-auto">
+                    <a href="{{ url_for('mobileNewIncome') }}"><button class="col-12" style="height: 6rem;">Income</button></a>
+                </div>
+                
+                <div class="col-10 mx-auto">
+                    <a href="{{ url_for('mobileNewExpense') }}"><button class="col-12 mt-2" style="height: 6rem;">Expense</button></a>
+                </div>
+                
+                <div class="col-10 mx-auto">
+                    <a href="{{ url_for('mobileNewDebtPayment') }}"><button class="col-12 mt-2" style="height: 6rem;">Debt Payment</button></a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "statements/statement_template.html" %}
+
+{% block content %}
+
+<div class="col-12 h-100" id="content">
+
+    <div class="col-12 no-gutters">
+        <div class="col-12 text-center">
+            <img src="{{ url_for('static', filename='business_logos/' + current_user.businesslogo) }}" alt=""
+                class="col-2 ml-4">
+            <h5>Chart Of Accounts</h5>
+            <h6>Test Company</h6>
+            <h6>100 fake street, somecity 20333</h6>
+        </div>
+    </div>
+
+    <table class="table col-12 text-left">
+        <thead>
+            <tr>
+                <th scope="column">Account</th>
+                <th scope="column">Name</th>
+                <th scope="column">Description</th>
+                <th scope="column">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+
+            {% if row.main == True %}
+            <tr>
+                <td>{{row.accountnumber}}</td>
+                <td>{{row.accountname}}</td>
+                <td>{{row.accountdescription}}</td>
+                <td>{{row.accountdate}}</td>
+            </tr>
+            {% endif %}
+
+
+            {% if row.main == False %}
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;{{row.accountnumber}}</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;{{row.accountname}}</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;{{row.accountdescription}}</td>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;{{row.accountdate}}</td>
+            </tr>
+            {% endif %}
+
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

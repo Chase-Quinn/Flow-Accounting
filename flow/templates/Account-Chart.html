@@ -1,0 +1,102 @@
+{% extends "main_template.html" %}
+
+{% block bodytag %}
+<body class="vh-100 vw-100">
+{% endblock %}
+
+
+{% block content %}
+<script>
+    $(document).ready(function () {
+            var messages = "{{ get_flashed_messages() }}";
+
+            if (typeof messages != 'undefined' && messages != '[]') {
+                $("#customerMessage").modal();
+            };
+        });
+</script>
+
+<div class="col-10 h-100 bg-dark">
+    <div class="col-12 h-90 no-gutters">
+        {{table}}
+    </div>
+    <div class="col-12 row no-gutters justify-content-center">
+            <button data-toggle="modal" data-target="#accountmodify" class="col-4">Modify
+                Account</button>
+        </div>
+</div>
+</div>
+
+
+<div id="customerMessage" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                {% with messages = get_flashed_messages(category_filter=["error"]) %}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-danger text-center">
+                    <div class=flashes>
+                        {% for message in messages %}
+                        {{ message }}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                {% with messages = get_flashed_messages(category_filter=["success"]) %}
+                {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success text-center">
+                    <div class=flashes>
+                        {% for message in messages %}
+                        {{ message }}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="accountmodify" tabindex="-1" role="dialog" aria-labelledby="accountmodify" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <h2 class="card-title text-center mt-4">Modify Account</h2>
+                <hr>
+                <form class="mb-3" method="POST" action="{{url_for('accountChart')}}">
+                    <div class="row no-gutters col-12">
+                        <div class="form-group col-5 mx-auto">
+                            {{ form.hidden_tag() }}
+                            {{ wtf.form_field(form.accountnumber) }}
+                        </div>
+                        <div class="form-group col-5 mx-auto">
+                            {{ wtf.form_field(form.accountname) }}
+                        </div>
+                        <div class="form-group col-5 mx-auto">
+                            {{ wtf.form_field(form.accountdescription) }}
+                        </div>
+                        <div class="form-group col-5 mx-auto">
+                            {{ wtf.form_field(form.accountdate) }}
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn-success">{{ wtf.form_field(form.submit) }}</button>
+                            <button type="button" data-dismiss="modal">Cancel</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}
