@@ -316,7 +316,7 @@ def businessInfo():
 @app.route('/process_cancellation', methods=['POST'])
 @login_required
 def processCancellation():
-    msg = Message('Membership Cancellation of ' + current_user.username, recipients=['flow.acc.manager@gmail.com'])
+    msg = Message('Membership Cancellation of ' + current_user.username, recipients=['chase@chasecoding.com'])
     msg.html = '<h3>Account Manager, <br>Please cancel the membership of user: <i>\'' + current_user.username + '\'</i>, their userid is: ' + str(current_user.id) + '</h3>. <br> <br> <small>*This email is not checked, please do not respond.</small>'
     mail.send(msg)
     flash(f'Your cancellation has been started, please give us 24 to 72 hours to finalize the cancellation.  We are sorry our product wasn\'t a good fit for you, please leave us feedback on how we can improve!', 'success')
@@ -327,7 +327,7 @@ def processCancellation():
 def processBugReport():
     bugtype = request.args.get('bugtype')
     report = request.args.get('report')
-    msg = Message('Bug Report from ' + current_user.username, recipients=['flow.acc.manager@gmail.com'])
+    msg = Message('Bug Report from ' + current_user.username, recipients=['chase@chasecoding.com'])
     msg.html = '<h3>Account Manager, <br>The bug report was sent by: <i>\'' + current_user.username + '\'</i>, their userid is: ' + str(current_user.id) + '</h3>. <br> <h4>Bug Type: <i>' + bugtype + '</i></h4> <br> <br> <h4>Bug Report:</h4> <br>' + report + '<br>' + '<br> <br> <small>*This email is not checked, please do not respond.</small>'
     mail.send(msg)
     new_bug_report = bugReportTable(userid = current_user.id, bugtype = bugtype, bugdescription = report, bugdate = date.today())
@@ -346,7 +346,7 @@ def processBugReport():
 @login_required
 def processFeedback():
     feedback = request.args.get('feedback')
-    msg = Message('Feedback from ' + current_user.username, recipients=['flow.acc.manager@gmail.com'])
+    msg = Message('Feedback from ' + current_user.username, recipients=['chase@chasecoding.com'])
     msg.html = '<h3>Account Manager, <br>The feedback was sent by: <i>\'' + current_user.username + '\'</i>, their userid is: ' + str(current_user.id)  + '.</h3> <br> <h4>Feedback:</h4> <br>' + feedback + '<br> <br> <br> <small>*This email is not checked, please do not respond.</small>'
     mail.send(msg)
     new_feedback = feedbackTable(userid = current_user.id, feedback = feedback, feedbackdate = date.today())
@@ -367,7 +367,7 @@ def subscribe():
     form = MembershipIssueButton()
 
     if form.validate_on_submit():
-        msg = Message('Membership Problem from ' + current_user.username, recipients=['flow.acc.manager@gmail.com'])
+        msg = Message('Membership Problem from ' + current_user.username, recipients=['chase@chasecoding.com'])
         msg.html = '<h3>Account Manager, <br>The Membership problem was sent by: <i>\'' + current_user.username + '\'</i>, their userid is: ' + str(current_user.id) + '</h3>. <br> <h4></h4> <br> <br> <h4>Please check to see if they did have a payment. Their <b>EMAIL ADDRESS</b> is <b> ' + current_user.email + ' and make sure they are members if they did. Contact them and figure out how they paid, then cross check it with the PayPal recurring payments dashboard. </b></h4> <br><br>' + '<br> <br> <small>*This email is not checked, please do not respond.</small>'
         mail.send(msg)
         new_bug_report = bugReportTable(userid = current_user.id, bugtype = 'Membership Problem', bugdescription = 'Payment not changing membership', bugdate = date.today())
@@ -392,7 +392,7 @@ def subscribe():
 #         user.lastpaydate = date.today()
 #         db.session.flush()
 #         db.session.commit()
-#         msg = Message('Membership Started for ' + current_user.username + '!', recipients=['reidster1994@gmail.com', 'gameradvocat3@gmail.com'])
+#         msg = Message('Membership Started for ' + current_user.username + '!', recipients=['chase@chasecoding.com', 'gameradvocat3@gmail.com'])
 #         msg.html = 'New member added!'
 #         mail.send(msg)
 #         return redirect(url_for('overview'))
@@ -402,7 +402,7 @@ def subscribe():
 #         user.lastpaydate = date.today()
 #         db.session.flush()
 #         db.session.commit()
-#         msg = Message('Membership Started for ' + current_user.username + '!', recipients=['reidster1994@gmail.com', 'gameradvocat3@gmail.com'])
+#         msg = Message('Membership Started for ' + current_user.username + '!', recipients=['chase@chasecoding.com', 'gameradvocat3@gmail.com'])
 #         msg.html = 'New member added!'
 #         mail.send(msg)
 #         return redirect(url_for('overview'))

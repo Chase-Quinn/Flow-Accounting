@@ -29,7 +29,7 @@ def index():
     form2 = EmailListForm()
 
     if form.validate_on_submit():
-        msg = Message('Home Page Contact Message From ' + form.name.data, recipients=['flow.accounting@myflowapp.com'])
+        msg = Message('Home Page Contact Message From ' + form.name.data, recipients=['chase@chasecoding.com'])
         msg.html = '<h3>Contact Message</h3> <br> <h4>Email:' + form.email.data + '</h4><br><h4>Name:' + form.name.data + '</h4> <br> <p>' + form.message.data + '</p>'
         mail.send(msg)
         flash(f'Your Message has been sent!  Thank you for your interest in Flow - Accounting Simplified!', 'success')
@@ -63,7 +63,7 @@ def about():
     form2 = EmailListForm()
 
     if form.validate_on_submit():
-        msg = Message('Home Page Contact Message From ' + form.name.data, recipients=['crtechsolutions01@gmail.com'])
+        msg = Message('Home Page Contact Message From ' + form.name.data, recipients=['Chase@Chasecoding.com'])
         msg.html = '<h3>Contact Message</h3> <br> <h4>Email:' + form.email.data + '</h4><br><h4>Name:' + form.name.data + '</h4> <br> <p>' + form.message.data + '</p>'
         mail.send(msg)
         flash(f'Your Message has been sent!  Thank you for your interest in Flow - Accounting Simplified!', 'success')
@@ -98,7 +98,7 @@ def contact():
     form3 = ContactPageForm()
 
     if form.validate_on_submit():
-        msg = Message('Home Page Contact Message From ' + form.name.data, recipients=['crtechsolutions01@gmail.com'])
+        msg = Message('Home Page Contact Message From ' + form.name.data, recipients=['Chase@Chasecoding.com'])
         msg.html = '<h3>Contact Message</h3> <br> <h4>Email:' + form.email.data + '</h4><br><h4>Name:' + form.name.data + '</h4> <br> <p>' + form.message.data + '</p>'
         mail.send(msg)
         flash(f'Your Message has been sent!  Thank you for your interest in Flow - Accounting Simplified!', 'success')
@@ -125,7 +125,7 @@ def contact():
                 return redirect(url_for('contact'))
 
     if form3.validate_on_submit():
-        msg = Message('Home Page Contact Message From ' + form3.name3.data, recipients=['crtechsolutions01@gmail.com'])
+        msg = Message('Home Page Contact Message From ' + form3.name3.data, recipients=['Chase@Chasecoding.com'])
         msg.html = '<h3>Contact Message</h3> <br> <h4>Email:' + form3.email3.data + '</h4><br><h4>Name:' + form3.name3.data + '</h4> <br> <p>' + form3.message3.data + '</p>'
         mail.send(msg)
         flash(f'Your Message has been sent!  Thank you for your interest in Flow - Accounting Simplified!', 'success')
@@ -139,7 +139,7 @@ def services():
     form2 = EmailListForm()
 
     if form.validate_on_submit():
-        msg = Message('Home Page Contact Message From ' + form.name.data, recipients=['crtechsolutions01@gmail.com'])
+        msg = Message('Home Page Contact Message From ' + form.name.data, recipients=['Chase@Chasecoding.com'])
         msg.html = '<h3>Contact Message</h3> <br> <h4>Email:' + form.email.data + '</h4><br><h4>Name:' + form.name.data + '</h4> <br> <p>' + form.message.data + '</p>'
         mail.send(msg)
         flash(f'Your Message has been sent!  Thank you for your interest in Flow - Accounting Simplified!', 'success')
